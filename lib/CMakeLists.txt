@@ -48,7 +48,7 @@ endif()
 #
 
 find_package(PkgConfig)
-pkg_search_module(SDL3 REQUIRED SDL3)
+pkg_search_module(SDL3 REQUIRED sdl3)
 
 set(IMGUI_SRC
         contrib/imgui/imgui.cpp

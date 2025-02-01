@@ -1,0 +1,12 @@
+[submodule "lib/contrib/imgui"]
+	path = lib/contrib/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "lib/contrib/ImGuiFileDialog"]
+	path = lib/contrib/ImGuiFileDialog
+	url = https://github.com/aiekick/ImGuiFileDialog.git
+[submodule "lib/contrib/luajit-cmake"]
+	path = lib/contrib/luajit-cmake
+	url = https://github.com/zhaozg/luajit-cmake.git
+[submodule "lib/contrib/SDL"]
+	path = lib/contrib/SDL
+	url = https://github.com/libsdl-org/SDL.git

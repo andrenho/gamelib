@@ -1,4 +1,4 @@
-- [ ] Basic infrastructure (library, sample project)
+- [x] Basic infrastructure (library, sample project)
 - [ ] Import imgui, ImGuiFileDialog, SDL3, SDL_image, SDL_ttf, SDL_mixer
 - [ ] UI
   - [ ] Initialize
@@ -6,5 +6,5 @@
 - [ ] ResourceManager
 - [ ] Scene / Pen
 - [ ] Queues / EventManager
-- [ ] Improvements on CMakeLists.txt
+- [ ] Improvements on CMakeLists.txt, autobuild
 - [ ] Documentation

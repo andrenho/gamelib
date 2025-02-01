@@ -47,7 +47,8 @@ endif()
 # libraries
 #
 
-add_subdirectory(contrib/SDL EXCLUDE_FROM_ALL)
+find_package(PkgConfig)
+pkg_search_module(SDL3 REQUIRED SDL3)
 
 set(IMGUI_SRC
         contrib/imgui/imgui.cpp
@@ -67,10 +68,11 @@ add_library(gamelib STATIC
         src/game.hh
         src/ui.cc
         src/ui.hh
-        $<TARGET_OBJECTS:SDL3::SDL3>
 )
 
-target_include_directories(gamelib PRIVATE contrib/SDL/include)
+target_include_directories(gamelib PUBLIC ${SDL3_INCLUDE_DIRS})
+target_include_directories(gamelib PUBLIC )
 target_compile_options(gamelib PRIVATE ${warnings})
+
 
 # TODO

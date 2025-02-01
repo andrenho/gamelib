@@ -66,9 +66,11 @@ add_subdirectory(${GAMELIB_DIR})
 add_executable(${EXE}
         src/main.cc)
 
+include_directories(${SDL3_INCLUDE_DIRS})
 target_compile_options(${EXE} PRIVATE ${warnings})
 target_include_directories(${EXE} SYSTEM PUBLIC . ${GAMELIB_DIR}/src)
-target_link_libraries(${EXE} PRIVATE gamelib SDL3::SDL3)
+target_link_directories(${EXE} PUBLIC ${SDL3_LIBRARY_DIRS})
+target_link_libraries(${EXE} PUBLIC gamelib ${SDL3_LIBRARIES})
 
 # TODO - embed
 

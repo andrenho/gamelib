@@ -55,8 +55,8 @@ set(IMGUI_SRC
         contrib/imgui/imgui_draw.cpp
         contrib/imgui/imgui_tables.cpp
         contrib/imgui/imgui_widgets.cpp
-        contrib/imgui/backends/imgui_impl_sdl2.cpp
-        contrib/imgui/backends/imgui_impl_sdlrenderer2.cpp
+        contrib/imgui/backends/imgui_impl_sdl3.cpp
+        contrib/imgui/backends/imgui_impl_sdlrenderer3.cpp
         contrib/ImGuiFileDialog/ImGuiFileDialog.cpp
 )
 
@@ -66,9 +66,11 @@ set_source_files_properties(${IMGUI_SRC} PROPERTIES COMPILE_FLAGS "-w")
 add_library(gamelib STATIC
         src/game.hh
         src/ui.cc
-        src/ui.hh)
+        src/ui.hh
+        $<TARGET_OBJECTS:SDL3::SDL3>
+)
 
+target_include_directories(gamelib PRIVATE contrib/SDL/include)
 target_compile_options(gamelib PRIVATE ${warnings})
-#target_link_libraries(gamelib PRIVATE SDL3::SDL3)
 
 # TODO

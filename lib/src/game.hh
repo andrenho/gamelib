@@ -2,20 +2,20 @@
 #define GAME_HH
 
 #include <memory>
-
-#include "ui.hh"
+#include <string>
 
 class Game {
 public:
-    template <typename T, typename... Args>
-    void init_ui(Args&&... args) {
-        ui_ = std::make_unique<T>(args...);
-    }
+    virtual ~Game() = default;
 
-    [[nodiscard]] UI& ui() const { return *ui_; }
+    [[nodiscard]] virtual std::string name() const = 0;
+    [[nodiscard]] virtual std::string version() const = 0;
+    [[nodiscard]] virtual std::string app_identifier() const = 0;
 
-private:
-    std::unique_ptr<UI> ui_;
+    static Game* instance(int argc, char* argv[]);
+
+protected:
+    Game() = default;
 };
 
 #endif //GAME_HH

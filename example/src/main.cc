@@ -1,7 +1,11 @@
 #include "game.hh"
 
+class MyUI : public UI {
+
+};
+
 int main()
 {
     Game game;
-    game.test();
+    game.init_ui<MyUI>();
 }

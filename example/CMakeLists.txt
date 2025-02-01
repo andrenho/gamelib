@@ -12,8 +12,6 @@ project(game-example
 set(EXE example)
 set(GAMELIB_DIR lib)  # TODO - replace by where you're putting the library
 
-find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3)
-
 #
 # configuration
 #
@@ -71,8 +69,6 @@ add_executable(${EXE}
 target_compile_options(${EXE} PRIVATE ${warnings})
 target_include_directories(${EXE} SYSTEM PUBLIC . ${GAMELIB_DIR}/src)
 target_link_libraries(${EXE} PRIVATE gamelib SDL3::SDL3)
-
-# TODO - link library
 
 # TODO - embed
 

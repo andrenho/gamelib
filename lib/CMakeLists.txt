@@ -47,8 +47,7 @@ endif()
 # libraries
 #
 
-#add_subdirectory(contrib/SDL EXCLUDE_FROM_ALL)
-find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3)
+add_subdirectory(contrib/SDL EXCLUDE_FROM_ALL)
 
 set(IMGUI_SRC
         contrib/imgui/imgui.cpp
@@ -65,11 +64,11 @@ set(IMGUI_SRC
 set_source_files_properties(${IMGUI_SRC} PROPERTIES COMPILE_FLAGS "-w")
 
 add_library(gamelib STATIC
-        src/game.cc
-        src/game.hh)
+        src/game.hh
+        src/ui.cc
+        src/ui.hh)
 
 target_compile_options(gamelib PRIVATE ${warnings})
-target_include_directories(gamelib SYSTEM PUBLIC ..)
-target_link_libraries(gamelib PRIVATE SDL3::SDL3)
+#target_link_libraries(gamelib PRIVATE SDL3::SDL3)
 
 # TODO

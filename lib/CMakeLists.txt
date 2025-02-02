@@ -67,6 +67,10 @@ set_source_files_properties(${IMGUI_SRC} PROPERTIES COMPILE_FLAGS "-w")
 add_library(gamelib STATIC
         src/game.hh
         src/game.cc
+        src/ui.cc
+        src/ui.hh
+        src/gamelib.hh
+        src/scene.hh
 )
 
 target_include_directories(gamelib PUBLIC ${SDL3_INCLUDE_DIRS})

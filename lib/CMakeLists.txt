@@ -63,13 +63,13 @@ if(APPLE)
     message(STATUS "macOS Version: ${MACOS_VERSION}")
 endif()
 
-set(LUAJIT ${CMAKE_SOURCE_DIR}/contrib/LuaJIT)
+set(LUAJIT ${CMAKE_CURRENT_SOURCE_DIR}/contrib/LuaJIT)
 set(LUAJIT_A ${LUAJIT}/src/libluajit.a)
 
 add_custom_command(
         OUTPUT ${LUAJIT_A}
-        COMMAND MACOSX_DEPLOYMENT_TARGET=${MACOS_VERSION} make -j8
-        WORKING_DIRECTORY ${LUAJIT}
+        COMMAND MACOSX_DEPLOYMENT_TARGET=${MACOS_VERSION} make -j8 libluajit.a
+        WORKING_DIRECTORY ${LUAJIT}/src
         COMMENT "Building luajit"
         VERBATIM
 )

@@ -15,7 +15,7 @@ class MyUI : public gb::UI {
 public:
     using UI::UI;
 
-    gb::Scene create_scene() const override
+    [[nodiscard]] gb::Scene create_scene() const override
     {
         return {};
     }

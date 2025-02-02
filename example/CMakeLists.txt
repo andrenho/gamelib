@@ -59,6 +59,8 @@ FetchContent_MakeAvailable(battery-embed)
 
 add_subdirectory(${GAMELIB_DIR})
 
+include_directories(${SDL3_INCLUDE_DIRS} ${SDL3_TTF_INCLUDE_DIRS} ${SDL3_IMAGE_INCLUDE_DIRS})
+
 #
 # executable
 #
@@ -66,11 +68,10 @@ add_subdirectory(${GAMELIB_DIR})
 add_executable(${EXE}
         src/main.cc)
 
-include_directories(${SDL3_INCLUDE_DIRS})
 target_compile_options(${EXE} PRIVATE ${warnings})
 target_include_directories(${EXE} SYSTEM PUBLIC . ${GAMELIB_DIR}/src)
-target_link_directories(${EXE} PUBLIC ${SDL3_LIBRARY_DIRS})
-target_link_libraries(${EXE} PUBLIC gamelib ${SDL3_LIBRARIES})
+target_link_directories(${EXE} PUBLIC ${SDL3_LIBRARY_DIRS} ${SDL3_TTF_LIBRARY_DIRS} ${SDL3_IMAGE_LIBRARY_DIRS})
+target_link_libraries(${EXE} PUBLIC gamelib ${SDL3_LIBRARIES} ${SDL3_TTF_LIBRARIES} ${SDL3_IMAGE_LIBRARIES})
 
 # TODO - embed
 

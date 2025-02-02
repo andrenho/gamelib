@@ -10,3 +10,6 @@
 [submodule "lib/contrib/SDL"]
 	path = lib/contrib/SDL
 	url = https://github.com/libsdl-org/SDL.git
+[submodule "lib/contrib/LuaJIT"]
+	path = lib/contrib/LuaJIT
+	url = https://github.com/LuaJIT/LuaJIT.git

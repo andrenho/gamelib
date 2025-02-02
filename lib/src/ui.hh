@@ -13,11 +13,11 @@ namespace gb {
 class UI {
 public:
     UI(std::string const& title, int w, int h, SDL_WindowFlags flags=0);
-    ~UI();
+    virtual ~UI();
 
-    virtual SDL_AppResult event(SDL_Event* event) = 0;
-    virtual Scene create_scene() const = 0;
-    virtual void render() const {}
+    virtual SDL_AppResult       event(SDL_Event* event) = 0;
+    [[nodiscard]] virtual Scene create_scene() const = 0;
+    virtual void                render() const {}
 
     void render_scene(Scene const& scene) const;
     void render_present() const;

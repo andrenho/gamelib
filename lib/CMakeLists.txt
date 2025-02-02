@@ -49,6 +49,49 @@ endif()
 
 find_package(PkgConfig)
 pkg_search_module(SDL3 REQUIRED sdl3)
+pkg_search_module(SDL3_TTF REQUIRED sdl3-ttf)
+pkg_search_module(SDL3_IMAGE REQUIRED sdl3-image)
+
+# build luajit
+
+if(APPLE)
+    execute_process(
+            COMMAND sw_vers -productVersion
+            OUTPUT_VARIABLE MACOS_VERSION
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    message(STATUS "macOS Version: ${MACOS_VERSION}")
+endif()
+
+set(LUAJIT_A ${CMAKE_SOURCE_DIR}/contrib/LuaJIT/src/libluajit.a)
+
+add_custom_command(
+        OUTPUT ${LUAJIT_A}
+        COMMAND MACOSX_DEPLOYMENT_TARGET=${MACOS_VERSION} make -j8
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/contrib/LuaJIT
+        COMMENT "Building luajit"
+        VERBATIM
+)
+
+add_custom_target(luajit_a
+        DEPENDS ${LUAJIT_A}
+)
+
+add_custom_target(clean_all
+        COMMAND MACOSX_DEPLOYMENT_TARGET=${MACOS_VERSION} make clean
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/contrib/LuaJIT
+)
+set_target_properties(clean_all
+        PROPERTIES
+        ADDITIONAL_CLEAN_FILES ${CMAKE_CURRENT_SOURCE_DIR}/contrib/LuaJIT
+)
+if (TARGET clean)
+    add_dependencies(clean_all)
+endif()
+
+#
+# source code
+#
 
 set(IMGUI_SRC
         contrib/imgui/imgui.cpp
@@ -71,11 +114,10 @@ add_library(gamelib STATIC
         src/ui.hh
         src/gamelib.hh
         src/scene.hh
+        ${IMGUI_SRC}
 )
 
-target_include_directories(gamelib PUBLIC ${SDL3_INCLUDE_DIRS})
-target_include_directories(gamelib PUBLIC )
+add_dependencies(gamelib luajit_a)
+target_include_directories(gamelib PUBLIC
+        ${SDL3_INCLUDE_DIRS} ${SDL3_TTF_INCLUDE_DIRS} ${SDL3_IMAGE_INCLUDE_DIRS} contrib/imgui)
 target_compile_options(gamelib PRIVATE ${warnings})
-
-
-# TODO

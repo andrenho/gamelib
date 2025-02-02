@@ -1,10 +1,11 @@
 - [x] Basic infrastructure (library, sample project)
-- [ ] Import imgui, ImGuiFileDialog, SDL3, SDL_image, SDL_ttf, SDL_mixer
-- [ ] UI
-  - [ ] Initialize
-  - [ ] Render
+- [ ] Import imgui, ImGuiFileDialog, SDL3, SDL_image, SDL_ttf, SDL_mixer, Lua, luacpp
 - [ ] ResourceManager
-- [ ] Scene / Pen
+- [ ] UI
+  - [x] Initialize
+  - [ ] Scene / Pen
+  - [ ] Render
+  - [ ] Render UI
 - [ ] Queues / EventManager
 - [ ] Improvements on CMakeLists.txt, autobuild
 - [ ] Documentation

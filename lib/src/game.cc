@@ -14,24 +14,24 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
     if (!SDL_Init(SDL_INIT_VIDEO))
         return SDL_APP_FAILURE;
 
-    UI();
+    U();
 
     return SDL_APP_CONTINUE;
 }
 
 SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 {
-    return const_cast<gb::UI&>(UI()).event(event);
+    return const_cast<gb::UI&>(U()).event(event);
 }
 
 SDL_AppResult SDL_AppIterate(void *appstate)
 {
     const_cast<gb::Game&>(G()).update();
 
-    gb::Scene scene = UI().create_scene();
-    UI().render_scene(scene);
-    UI().render();
-    UI().render_present();
+    gb::Scene scene = U().create_scene();
+    U().render_scene(scene);
+    U().render();
+    U().render_present();
     return SDL_APP_CONTINUE;
 }
 

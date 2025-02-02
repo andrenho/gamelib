@@ -22,13 +22,16 @@ public:
     void render_scene(Scene const& scene) const;
     void render_present() const;
 
+    [[nodiscard]] SDL_Window*   window() const { return window_; }
+    [[nodiscard]] SDL_Renderer* ren() const { return ren_; }
+
 protected:
-    SDL_Window* window;
-    SDL_Renderer* ren;
+    SDL_Window* window_;
+    SDL_Renderer* ren_;
 };
 
 }
 
-gb::UI const& UI();
+gb::UI const& U();
 
 #endif //UI_HH

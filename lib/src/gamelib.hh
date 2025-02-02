@@ -3,5 +3,6 @@
 
 #include "game.hh"
 #include "ui.hh"
+#include "resourcemanager.hh"
 
 #endif //GAMELIB_HH

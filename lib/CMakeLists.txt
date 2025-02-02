@@ -101,6 +101,8 @@ set(IMGUI_SRC
         contrib/imgui/backends/imgui_impl_sdl3.cpp
         contrib/imgui/backends/imgui_impl_sdlrenderer3.cpp
         contrib/ImGuiFileDialog/ImGuiFileDialog.cpp
+        src/resourcemanager.cc
+        src/resourcemanager.hh
 )
 
 # ignore warnings in imported files

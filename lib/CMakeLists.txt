@@ -63,15 +63,18 @@ if(APPLE)
     message(STATUS "macOS Version: ${MACOS_VERSION}")
 endif()
 
-set(LUAJIT_A ${CMAKE_SOURCE_DIR}/contrib/LuaJIT/src/libluajit.a)
+set(LUAJIT ${CMAKE_SOURCE_DIR}/contrib/LuaJIT)
+set(LUAJIT_A ${LUAJIT}/src/libluajit.a)
 
 add_custom_command(
         OUTPUT ${LUAJIT_A}
         COMMAND MACOSX_DEPLOYMENT_TARGET=${MACOS_VERSION} make -j8
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/contrib/LuaJIT
+        WORKING_DIRECTORY ${LUAJIT}
         COMMENT "Building luajit"
         VERBATIM
 )
+
+file(GLOB LUAJIT_O ${LUAJIT}/src/*.o)
 
 add_custom_target(luajit_a
         DEPENDS ${LUAJIT_A}
@@ -81,12 +84,8 @@ add_custom_target(clean_all
         COMMAND MACOSX_DEPLOYMENT_TARGET=${MACOS_VERSION} make clean
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/contrib/LuaJIT
 )
-set_target_properties(clean_all
-        PROPERTIES
-        ADDITIONAL_CLEAN_FILES ${CMAKE_CURRENT_SOURCE_DIR}/contrib/LuaJIT
-)
 if (TARGET clean)
-    add_dependencies(clean_all)
+    add_dependencies(clean clean_all)
 endif()
 
 #
@@ -115,6 +114,7 @@ add_library(gamelib STATIC
         src/gamelib.hh
         src/scene.hh
         ${IMGUI_SRC}
+        ${LUAJIT_O}
 )
 
 add_dependencies(gamelib luajit_a)
